@@ -24,7 +24,7 @@ function App() {
 
   return (
     <DispatchContext.Provider value={dispatch}>
-      <Container fluid className='vh-100 d-inline-block'>ق
+      <Container fluid className='vh-100 d-inline-block'>
         <Jumbotron className='h-100'>
           <Row className=' h-100'>
             <Col className='h-100 d-inline-block' md={4}>
