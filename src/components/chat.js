@@ -56,7 +56,7 @@ export default function Chat({ id, chatsDetails }) {
             <div className='font-weight-bold h4 d-block p-3 mb-5 bg-info text-white text-center'>{chatData.userName}</div >
             <MessagesList messages={messages} />
             {(id !== 0) && (<div className="chat-footer offset-md-4 fixed-bottom">
-                <InputGroup className=" mb-5 ml-3 pr-5 mr-5" >
+                <InputGroup className=" mb-3 ml-3 pr-5 mr-5" >
                 <FormControl
                     placeholder="Type your message here"
                     aria-label="message box"
