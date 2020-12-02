@@ -4,7 +4,6 @@ import MessagesList from './messagesList';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
-import Jumbotron from 'react-bootstrap/Jumbotron';
 
 export default function Chat({ id, chatsDetails }) {
 
