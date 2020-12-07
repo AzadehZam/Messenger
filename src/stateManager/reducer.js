@@ -1,71 +1,34 @@
-import { CHATS_LIST_DATA } from '../constants/const';
+import { INIT_STATE } from '../constants/const';
+import { ACTIONS } from './actions';
 
+let id = 3;
+const idGenerator = () => {
+  return ++id;
+}
+
+const ACTION_HANDLERS = {
+  [ACTIONS.SELECT_CHAT]: handleChatSelect,
+  [ACTIONS.SEND_MESSAGE]: handleSendMessage,
+  [ACTIONS.SEARCH]: handleSearch
+} 
 export default function reducer(state, action) {
-  switch (action.type) {
 
-    case 'CHAT_SELECTED': {
-      const { chatsListData } = state;
-      const id  =  action.payload;
-      const newChatsListData = handleUnreadMessages( id, chatsListData )
-      return {
-        ...state,
-        selectedId: action.payload,
-        chatsListData: newChatsListData
-      };
-    }
-
-    case 'MESSAGE_SENT': {
-      const { newMessages , id} =  action.payload;
-      const { chatsListData, chatsDetails } = state;
-      const newChatsDetails = handleChatDetail( newMessages, id, chatsDetails )
-      const newChatsListData = handleChatsListData( newMessages, id, chatsListData )
-      return {
-        ...state,
-        chatsDetails: newChatsDetails,
-        chatsListData: newChatsListData
-      };
-    }
-
-    case 'SEARCH': {
-      const keyword =  action.payload;
-      const newChatsListData = handleSearch( keyword, CHATS_LIST_DATA )
-      return {
-        ...state,
-        chatsListData: newChatsListData
-      };
-    }
-
-    default: {
-      return state;
-    }
-  }
+  return (ACTION_HANDLERS[action.type] || (() => state ))(state, action.payload)
 }
 
-function handleChatDetail( messages, id, chatsDetails ) {
-  
-  let changedChatIndex = chatsDetails.findIndex(item => item.userId === id);
-  let newChatsDetails = [...chatsDetails];
-  let newChangedChat = {...newChatsDetails[changedChatIndex]};
-  newChangedChat.messages = messages;
-  newChatsDetails.splice(changedChatIndex, 1, newChangedChat);
-  return newChatsDetails;
+function handleChatSelect(state, payload){
+  const { chatsList } = state;
+      const chatId  =  payload;
+      const newchatsList = handleUnreadMessages( chatId, chatsList )
+      return {
+        ...state,
+        selectedId: payload,
+        chatsList: newchatsList
+      };
 }
-
-
-function handleChatsListData( messages, id, chatsListData ) {
-  
-  let changedChatIndex = chatsListData.findIndex(item => item.id === id);
-  let newChatsListData = [...chatsListData];
-  let newChatListItem = {...newChatsListData[changedChatIndex]};
-  newChatListItem.text = messages[messages.length-1].text;
-  newChatListItem.time = messages[messages.length-1].time;
-  newChatsListData.splice(changedChatIndex, 1, newChatListItem);
-  return newChatsListData;
-}
-
 
 function handleUnreadMessages( id , data) {
-  let index = data.findIndex(item => item.id === id);
+  let index = data.findIndex(item => item.chatId === id);
   let newData = [...data];
   let newItem = {...newData[index]};
   newItem.unreadMessages = '';
@@ -73,8 +36,44 @@ function handleUnreadMessages( id , data) {
   return newData;
 }
 
-function handleSearch(keyword, data){
+function handleSendMessage(state, payload){
+  const { message , chatId} =  payload;
+      const { chatsDetails } = state;
+      const messages = chatsDetails.find(chat => chat.chatId === chatId).messages;
+      const newMessages = [
+        ...messages,
+        {
+            id: (idGenerator()).toString(),
+            text: message,
+            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            userId: '1'
+        }
+    ];
+      const newChatsDetails = handleChatDetail( newMessages, chatId, chatsDetails )
+      
+      return {
+        ...state,
+        chatsDetails: newChatsDetails,
+      };
+}
+
+function handleChatDetail( messages, id, chatsDetails ) {
   
-  const newData = data.filter(item => (item.userName.toLowerCase().includes( keyword.toLowerCase() )));
-  return newData;
+  let changedChatIndex = chatsDetails.findIndex(item => item.chatId === id);
+  let newChatsDetails = [...chatsDetails];
+  let newChangedChat = {...newChatsDetails[changedChatIndex]};
+  newChangedChat.messages = messages;
+  newChatsDetails.splice(changedChatIndex, 1, newChangedChat);
+  return newChatsDetails;
+}
+
+function handleSearch(state, payload){
+  const keyword =  payload;
+  const {  chatsList } = INIT_STATE;
+  
+  const  newChatsList = chatsList.filter(item => (item.userName.toLowerCase().includes( keyword.toLowerCase())));
+  return {
+          ...state,
+          chatsList: newChatsList
+        };
 }

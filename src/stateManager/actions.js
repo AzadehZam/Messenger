@@ -4,4 +4,15 @@ function createAction( type, payload){
         payload: payload
     })
 }
-export const selectChat = (id) => createAction('CHAT_SELECTED', id);
+
+export const ACTIONS = {
+    SELECT_CHAT: 'SELECT_CHAT',
+    SEND_MESSAGE: 'SEND_MESSAGE',
+    SEARCH: 'SEARCH'
+}
+
+export const selectChat = (chatId) => createAction('SELECT_CHAT', chatId);
+
+export const sendMessage = ({ message, chatId }) => createAction('SEND_MESSAGE', { message, chatId });
+
+export const search = ( keyword ) => createAction('SEARCH', keyword );

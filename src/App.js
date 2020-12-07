@@ -1,5 +1,5 @@
-import React, {useReducer } from 'react';
-import { CHATS_LIST_DATA, CHATS_DETAILS } from './constants/const';
+import React, { useReducer } from 'react';
+import { INIT_STATE } from './constants/const';
 import './App.scss';
 // import MessagesList from './components/messagesList';
 import ChatsList from './components/chatsList';
@@ -12,16 +12,16 @@ import Row from 'react-bootstrap/Row';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import SearchBox from './components/SearchBox';
 
-// export const DispatchContext = createContext();
+
 
 function App() {
+  console.log(INIT_STATE);
+  
 
-  const [{ selectedId, chatsListData, chatsDetails }, dispatch] = useReducer(reducer, {
-    selectedId: 0,
-    chatsListData: CHATS_LIST_DATA,
-    chatsDetails: CHATS_DETAILS
-  })
 
+  const [{ userId, selectedId, chatsList, chatsDetails }, dispatch] = useReducer(reducer, INIT_STATE)
+ 
+  
   return (
     <DispatchContext.Provider value={dispatch}>
       <Container fluid className='vh-100 d-inline-block'>
@@ -29,27 +29,21 @@ function App() {
           <Row className=' h-100'>
             <Col className='h-100 d-inline-block' md={4}>
               <div className='my-3'>
-                <SearchBox  />
+                <SearchBox />
               </div>
               <div className='my-3'>
-              <ChatsList data={chatsListData} />
+                <ChatsList chatsList={chatsList}  chatsDetails={chatsDetails}/>
               </div>
-               
+
             </Col>
             <Col className='align-bottom' md={8}>
-              <Chat id={selectedId} chatsDetails={chatsDetails}  />
+              {selectedId && <Chat chatId={selectedId} userId={userId} chatsDetails={chatsDetails} />}
             </Col>
           </Row>
         </Jumbotron>
       </Container>
-      {/* <div>
-        <ChatsList data={CHATS_LIST_DATA} />
-        <Chat id={selectedId} />
-      </div> */}
     </DispatchContext.Provider>
   );
 }
 
 export default App;
-
-// <MessagesList data={USERS_MESSAGES_DATA[0]} />

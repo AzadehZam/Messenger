@@ -6,13 +6,13 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 // import { DispatchContext } from '../App';
 
-export default function ChatsListItem({ text, time, userName, unreadMessages, id }) {
+export default function ChatsListItem({ text, time, userName, unreadMessages, chatId }) {
 
     const dispatch = useDispatch();
     // const dispatch = useContext(DispatchContext);
 
     return (
-        <Container className='p1'onClick={() => dispatch(selectChat(id))}>
+        <Container className='p1'onClick={() => dispatch(selectChat(chatId))}>
         <Row>
             <Col md={7}>
             <span className='font-weight-bold'>{userName}</span>

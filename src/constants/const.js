@@ -1,111 +1,214 @@
-export const CHATS_LIST_DATA = [
-    {
-      id: 1,
-      text: 'Hi, how are you?',
-      time: '10:10 AM',
-      userName: 'Maryam',
-      unreadMessages: '1'
-    },
-    {
-      id: 2,
-      text: 'Hi Azadeh. I\'m fine.',
-      time: '7:05 AM',
-      userName: 'Meisam',
-      unreadMessages: '1'
-    },
-    {
-      id: 3,
-      text: 'Hi Azadeh',
-      time: '9:05 AM',
-      userName: 'Arash',
-      unreadMessages: '1'
-    },
-    {
-        id: 4,
-        text: 'Hello, What\'s up',
-        time: '8:05 AM',
-        userName: 'Pegah',
-        unreadMessages: '1'
-      },
-  ]
 
-  export const CHATS_DETAILS = [
-    {
-        userId: 0,
-        userName: '',
-        messages: []
-    },
-    {
-        userId: 1,
-        userName: 'Maryam',
-        messages: [
-            {
-                id: 1,
-                text: 'Hello Maryam',
-                time: '9:00 AM',
-                sender: 'myself'
-            },
-            {
-                id: 2,
-                text: 'Hi, how are you?',
-                time: '10:10 AM',
-                sender: 'Maryam'
-            },
-        ]
-    },
-    {
-        userId: 2,
-        userName: 'Meisam',
-        messages: [
-            {
-                id: 1,
-                text: 'Hello Meisam, are you OK?',
-                time: '7:00 AM',
-                sender: 'myself'
-            },
-            {
-                id: 2,
-                text: 'Hi Azadeh. I\'m fine.',
-                time: '7:05 AM',
-                sender: 'Meisam'
-            },
-        ]
-    },
-    {
-        userId: 3,
-        userName: 'Arash',
-        messages: [
-            {
-                id: 1,
-                text: 'Hello Arash.',
-                time: '9:00 AM',
-                sender: 'myself'
-            },
-            {
-                id: 2,
-                text: 'Hi Azadeh',
-                time: '9:05 AM',
-                sender: 'Arash'
-            },
-        ]
-    },
-    {
-        userId: 4,
-        userName: 'Pegah',
-        messages: [
-            {
-                id: 1,
-                text: 'Hi Pegah.',
-                time: '9:00 AM',
-                sender: 'myself'
-            },
-            {
-                id: 2,
-                text: 'Hello, What\'s up',
-                time: '9:05 AM',
-                sender: 'Arash'
-            },
-        ]
-    },
+// export const CHATS_LIST_DATA = [
+//     {
+//         chatId: '1',
+//         userName: 'Maryam',
+//         unreadMessages: '1'
+//     },
+//     {
+//         chatId: '2',
+//         time: '7:05 AM',
+//         userName: 'Meisam',
+//         unreadMessages: '1'
+//     },
+//     {
+//         chatId: '3',
+//         userName: 'Arash',
+//         unreadMessages: '1'
+//     },
+//     {
+//         chatId: '4',
+//         userName: 'Pegah',
+//         unreadMessages: '1'
+//     },
+// ]
 
-]
+// export const CHATS_DETAILS = [
+//     {
+//         chatId: '0',
+//         messages: []
+//     },
+//     {
+//         chatId: '1',
+//         messages: [
+//             {
+//                 id: '1',
+//                 text: 'Hello Maryam',
+//                 time: '9:00 AM',
+//                 userId: '1'
+//             },
+//             {
+//                 id: '2',
+//                 text: 'Hi, how are you?',
+//                 time: '10:10 AM',
+//                 userId: '2'
+//             },
+           
+//         ]
+//     },
+//     {
+//         chatId: '2',
+//         messages: [
+//             {
+//                 id: '1',
+//                 text: 'Hello Meisam, are you OK?',
+//                 time: '7:00 AM',
+//                 userId: '1'
+//             },
+//             {
+//                 id: '2',
+//                 text: 'Hi Azadeh. I\'m fine.',
+//                 time: '7:05 AM',
+//                 userId: '2'
+//             },
+//         ]
+//     },
+//     {
+//         chatId: '3',
+//         messages: [
+//             {
+//                 id: '1',
+//                 text: 'Hello Arash.',
+//                 time: '9:00 AM',
+//                 userId: '1'
+//             },
+//             {
+//                 id: '2',
+//                 text: 'Hi Azadeh',
+//                 time: '9:05 AM',
+//                 userId: '2'
+//             },
+//         ]
+//     },
+//     {
+//         chatId: '4',
+//         messages: [
+//             {
+//                 id: '1',
+//                 text: 'Hi Pegah.',
+//                 time: '9:00 AM',
+//                 userId: '1'
+//             },
+//             {
+//                 id: '2',
+//                 text: 'Hello, What\'s up?',
+//                 time: '9:05 AM',
+//                 userId: '2'
+//             },
+          
+//         ]
+//     },
+
+// ]
+
+export const INIT_STATE = {
+    userId: '1',
+    selectedId: null,
+    chatsList: [
+        {
+            chatId: '1',
+            userName: 'Maryam',
+            unreadMessages: '1'
+        },
+        {
+            chatId: '2',
+            time: '7:05 AM',
+            userName: 'Meisam',
+            unreadMessages: '1'
+        },
+        {
+            chatId: '3',
+            userName: 'Arash',
+            unreadMessages: '1'
+        },
+        {
+            chatId: '4',
+            userName: 'Pegah',
+            unreadMessages: '1'
+        },
+    ],
+    chatsDetails: [
+        
+        {
+            chatId: '1',
+            messages: [
+                {
+                    id: '1',
+                    text: 'Hello Maryam',
+                    time: '9:00 AM',
+                    userId: '1'
+                },
+                {
+                    id: '2',
+                    text: 'Hi, how are you?',
+                    time: '10:10 AM',
+                    userId: '2'
+                },
+                {
+                    id: '3',
+                    text: 'I miss you',
+                    time: '10:11 AM',
+                    userId: '2'
+                },
+            ]
+        },
+        {
+            chatId: '2',
+            messages: [
+                {
+                    id: '1',
+                    text: 'Hello Meisam, are you OK?',
+                    time: '7:00 AM',
+                    userId: '1'
+                },
+                {
+                    id: '2',
+                    text: 'Hi Azadeh. I\'m fine.',
+                    time: '7:05 AM',
+                    userId: '2'
+                },
+            ]
+        },
+        {
+            chatId: '3',
+            messages: [
+                {
+                    id: '1',
+                    text: 'Hello Arash.',
+                    time: '9:00 AM',
+                    userId: '1'
+                },
+                {
+                    id: '2',
+                    text: 'Hi Azadeh',
+                    time: '9:05 AM',
+                    userId: '2'
+                },
+            ]
+        },
+        {
+            chatId: '4',
+            messages: [
+                {
+                    id: '1',
+                    text: 'Hi Pegah.',
+                    time: '9:00 AM',
+                    userId: '1'
+                },
+                {
+                    id: '2',
+                    text: 'Hello, What\'s up?',
+                    time: '9:05 AM',
+                    userId: '2'
+                },
+                {
+                    id: '3',
+                    text: 'Is everything OK?',
+                    time: '9:06 AM',
+                    userId: '2'
+                },
+            ]
+        },
+
+    ]
+}
