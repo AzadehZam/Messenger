@@ -42,11 +42,14 @@ export default function Chat({ chatId, chatsDetails }) {
     }
 
     return (
-        <div className='w-100 h-100 d-block align-bottom border border-secondary rounded '>
+        <div className='w-100 h-100 d-block align-bottom border border-secondary rounded chat'>
             <div className='font-weight-bold h4 d-block p-3 mb-5 bg-info text-white text-center'>{chatData.userName}</div >
+            <div className='message-list'>
             <MessagesList messages={messages} />
-            {chatId && (<div className="chat-footer offset-md-4 fixed-bottom">
-                <InputGroup className=" mb-3 ml-3 pr-5 mr-5" >
+            
+            </div>
+            {chatId && (<div className="chat-footer offset-md-4">
+                <InputGroup className=" mb-3 ml-3 pr-5 mr-5 message-input " >
                     <FormControl
                         placeholder="Type your message here"
                         aria-label="message box"

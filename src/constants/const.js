@@ -144,12 +144,7 @@ export const INIT_STATE = {
                     time: '10:10 AM',
                     userId: '2'
                 },
-                {
-                    id: '3',
-                    text: 'I miss you',
-                    time: '10:11 AM',
-                    userId: '2'
-                },
+               
             ]
         },
         {
@@ -201,12 +196,7 @@ export const INIT_STATE = {
                     time: '9:05 AM',
                     userId: '2'
                 },
-                {
-                    id: '3',
-                    text: 'Is everything OK?',
-                    time: '9:06 AM',
-                    userId: '2'
-                },
+              
             ]
         },
 

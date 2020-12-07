@@ -1,7 +1,7 @@
 import { INIT_STATE } from '../constants/const';
 import { ACTIONS } from './actions';
 
-let id = 3;
+let id = 2;
 const idGenerator = () => {
   return ++id;
 }

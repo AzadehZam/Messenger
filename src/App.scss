@@ -5,10 +5,21 @@
   text-align: center;
 }
 
+.chat{
+  display: relative
 
+}
+
+.message-list{
+  overflow-y: scroll;
+}
 
 .message-input {
-  display: flex;
+  padding: 0 2vw;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 
