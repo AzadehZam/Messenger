@@ -16,22 +16,9 @@ export default function Chat({ chatId, chatsDetails }) {
     const messages = chatData.messages
 
     const [message, setMessage] = useState('');
-    // const [messages, setMessages] = useState(chatData.messages);
-
-    //useEffect(() =>
-        //setMessages(chatData.messages)
-        //, [chatData.messages])
 
     function handleSend() {
-        
-        //setMessages(newMessages);
-
         dispatch(sendMessage({ message, chatId }))
-
-        // dispatch({
-        //     type: 'SEND_MESSAGE',
-        //     payload: { message, chatId }
-        // });
         setMessage('');
     }
 
@@ -49,7 +36,7 @@ export default function Chat({ chatId, chatsDetails }) {
             
             </div>
             {chatId && (<div className="chat-footer offset-md-4">
-                <InputGroup className=" mb-3 ml-3 pr-5 mr-5 message-input " >
+                <InputGroup className=" message-input " >
                     <FormControl
                         placeholder="Type your message here"
                         aria-label="message box"

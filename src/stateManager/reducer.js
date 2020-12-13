@@ -1,4 +1,4 @@
-import { INIT_STATE } from '../constants/const';
+import { INIT_STATE } from '../server/initialData';
 import { ACTIONS } from './actions';
 
 let id = 2;
@@ -7,6 +7,7 @@ const idGenerator = () => {
 }
 
 const ACTION_HANDLERS = {
+  [ACTIONS.INITIAL_DATA_LOADED]: handleInitialDataLoaded,
   [ACTIONS.SELECT_CHAT]: handleChatSelect,
   [ACTIONS.SEND_MESSAGE]: handleSendMessage,
   [ACTIONS.SEARCH]: handleSearch
@@ -16,7 +17,18 @@ export default function reducer(state, action) {
   return (ACTION_HANDLERS[action.type] || (() => state ))(state, action.payload)
 }
 
-function handleChatSelect(state, payload){
+function handleInitialDataLoaded(state, payload) {
+  const {userId, selectedId, chatsList, chatsDetails} = payload;
+  return{
+    ...state,
+    userId,
+    selectedId,
+    chatsList,
+    chatsDetails
+  }
+}
+
+function handleChatSelect(state, payload) {
   const { chatsList } = state;
       const chatId  =  payload;
       const newchatsList = handleUnreadMessages( chatId, chatsList )
