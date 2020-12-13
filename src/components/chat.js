@@ -8,17 +8,15 @@ import InputGroup from 'react-bootstrap/InputGroup';
 
 
 
-export default function Chat({ chatId, chatsDetails }) {
+export default function Chat({ userName, chatId, selectedChatDatails, userId }) {
 
     const dispatch = useDispatch();
 
-    let chatData = chatsDetails.find(item => item.chatId === chatId);
-    const messages = chatData.messages
 
     const [message, setMessage] = useState('');
 
     function handleSend() {
-        dispatch(sendMessage({ message, chatId }))
+        dispatch(sendMessage({  message, chatId }))
         setMessage('');
     }
 
@@ -29,13 +27,13 @@ export default function Chat({ chatId, chatsDetails }) {
     }
 
     return (
-        <div className='w-100 h-100 d-block align-bottom border border-secondary rounded chat'>
-            <div className='font-weight-bold h4 d-block p-3 mb-5 bg-info text-white text-center'>{chatData.userName}</div >
+        <div className='w-100 h-100 d-block  border border-secondary rounded chat'>
+            <div className='font-weight-bold h4 d-block p-3 bg-info text-white text-center'>{userName}</div >
             <div className='message-list'>
-            <MessagesList messages={messages} />
-            
+               {!!selectedChatDatails && <MessagesList messages={selectedChatDatails.messages}  />}
+
             </div>
-            {chatId && (<div className="chat-footer offset-md-4">
+            {chatId && (<div className="chat-footer  w-100">
                 <InputGroup className=" message-input " >
                     <FormControl
                         placeholder="Type your message here"
@@ -50,6 +48,6 @@ export default function Chat({ chatId, chatsDetails }) {
                 </InputGroup>
             </div>)
             }
-</div >
+        </div >
     )
 }

@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useThunkReducer } from 'react-hook-thunk-reducer';
 import './App.scss';
 import ChatsList from './components/chatsList';
 import Chat from './components/chat';
 import reducer from './stateManager/reducer';
 import DispatchContext from './context/dispatch';
-import {fetchInitData} from './stateManager/actions';
+import { fetchInitData } from './stateManager/actions';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -21,9 +21,18 @@ function App() {
     chatsDetails: []
   });
 
-useEffect(() => {
-  dispatch(fetchInitData());
-},[dispatch]);
+  useEffect(() => {
+    dispatch(fetchInitData());
+    
+  }, [dispatch]);
+  
+  const selectedChat = useMemo(
+    () => chatsList.find(chat => chat.chatId === selectedId),
+    [chatsList, selectedId]
+    );
+
+    const selectedChatDatails = chatsDetails.find(item => item.chatId === selectedId);
+  
 
   return (
     <DispatchContext.Provider value={dispatch}>
@@ -40,7 +49,7 @@ useEffect(() => {
 
             </Col>
             <Col className='align-bottom' md={8}>
-              {selectedId && <Chat chatId={selectedId} userId={userId} chatsDetails={chatsDetails} />}
+              {selectedId && <Chat  chatId={selectedId} userName={selectedChat.userName} selectedChatDatails={selectedChatDatails} userId={userId}/>}
             </Col>
           </Row>
         </Jumbotron>

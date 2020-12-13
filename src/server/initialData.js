@@ -11,7 +11,6 @@ export const INIT_STATE = {
         },
         {
             chatId: '2',
-            time: '7:05 AM',
             userName: 'Meisam',
             unreadMessages: '1'
         },
