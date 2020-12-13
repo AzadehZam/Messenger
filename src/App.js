@@ -12,7 +12,6 @@ import Row from 'react-bootstrap/Row';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import SearchBox from './components/SearchBox';
 
-
 function App() {
 
   const [{ userId, selectedId, chatsList, chatsDetails }, dispatch] = useThunkReducer(reducer, {
@@ -25,7 +24,6 @@ function App() {
 useEffect(() => {
   dispatch(fetchInitData());
 },[dispatch]);
-
 
   return (
     <DispatchContext.Provider value={dispatch}>

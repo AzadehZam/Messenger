@@ -18,10 +18,10 @@ export default function SearchBox() {
     }
 
     return (
-        <div className='chat w-100 d-inline-block '>
+        <div className='chat w-100 d-block '>
             
             <div className="search-box">
-                <InputGroup className=" mb-1 message-input">
+                <InputGroup className=" mb-1 ">
                     <FormControl
                         placeholder="Search"
                         aria-label="message box"

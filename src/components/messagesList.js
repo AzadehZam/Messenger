@@ -14,13 +14,3 @@ export default function MessagesList({messages}) {
     </ul>
 
 }
-
-// return <ul className='list-group'>
-//             {items.map(item => {
-//                 return <li className='list-group-item' key={item.id}>
-//                     <div>
-//                         <ListItem onChange={onChange} onDelete={onDelete} item={item} />
-//                     </div>
-//                 </li>
-//             })}
-//         </ul>

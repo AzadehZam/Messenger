@@ -4,12 +4,10 @@ import { selectChat } from '../stateManager/actions';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-// import { DispatchContext } from '../App';
 
 export default function ChatsListItem({ text, time, userName, unreadMessages, chatId }) {
 
     const dispatch = useDispatch();
-    // const dispatch = useContext(DispatchContext);
 
     return (
         <Container className='p1'onClick={() => dispatch(selectChat(chatId))}>
@@ -31,11 +29,5 @@ export default function ChatsListItem({ text, time, userName, unreadMessages, ch
         </Row>
         
       </Container>
-        // <div className='chatsListItem' onClick={() => dispatch(selectChat(id))}>
-        //     <h6>{sender}</h6>
-        //     <div className='chatText'>{text}</div>
-        //     <span>{unreadMessages}</span>
-        //     <div className='chatTime'>{time}</div>
-        // </div>
     )
 }
