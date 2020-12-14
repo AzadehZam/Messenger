@@ -28,7 +28,7 @@ export default function Chat({ userName, chatId, selectedChatDatails, userId }) 
 
     return (
         <div className='w-100 h-100 d-block  border border-secondary rounded chat'>
-            <div className='font-weight-bold h4 d-block p-3 bg-info text-white text-center'>{userName}</div >
+            <div className='font-weight-bold h4 d-block p-3 bg-dark text-white text-center'>{userName}</div >
             <div className='message-list'>
                {!!selectedChatDatails && <MessagesList messages={selectedChatDatails.messages}  />}
 
