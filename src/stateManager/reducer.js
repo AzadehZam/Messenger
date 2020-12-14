@@ -51,7 +51,7 @@ function handleUnreadMessages( id , data) {
 
 function handleSendMessage(state, payload){
   const { message , chatId} =  payload;
-      const { chatsDetails } = state;
+      const { chatsDetails, chatsList } = state;
       const messages = chatsDetails.find(chat => chat.chatId === chatId).messages;
       const newMessages = [
         ...messages,
@@ -63,10 +63,15 @@ function handleSendMessage(state, payload){
         }
     ];
       const newChatsDetails = handleChatDetail( newMessages, chatId, chatsDetails )
+      let newChatsList = [...chatsList]
+      newChatsList = handleSortChatsList(newChatsList, chatId)
+      console.log('newChatsList');
+      console.log(newChatsList);
       
       return {
         ...state,
         chatsDetails: newChatsDetails,
+        chatsList: newChatsList
       };
 }
 
@@ -78,6 +83,19 @@ function handleChatDetail( messages, id, chatsDetails ) {
   newChangedChat.messages = messages;
   newChatsDetails.splice(changedChatIndex, 1, newChangedChat);
   return newChatsDetails;
+}
+
+function handleSortChatsList(list, id) {
+  const changedIndex = list.findIndex(chat => chat.chatId === id)
+  if(changedIndex === 0){
+    return list;
+  }
+  const updatedChat = list.splice(changedIndex, 1);
+   
+  return[
+    ...updatedChat,
+    ...list
+  ];
 }
 
 function handleSearch(state, payload){
