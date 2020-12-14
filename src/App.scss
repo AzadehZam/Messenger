@@ -24,9 +24,13 @@
   right: 0;
 }
 
-
-
 .name {
   margin-left: 10px;
+}
+
+.side-bar {
+  height: 75vh;
+  overflow-y: scroll;
+  background: linear-gradient(rgb(241, 235, 237) 0%, rgb(221, 216, 250) 50%, rgb(231, 246, 248) 100%);
 }
 

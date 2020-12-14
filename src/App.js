@@ -44,7 +44,7 @@ function App() {
         <Jumbotron className='h-100'>
           {loading && <Spinner loading={loading}/>}
           {!loading && <Row className=' h-100'>
-            <Col className='h-100 d-inline-block side-bar' md={4}>
+            <Col className='h-100 d-inline-block side-bar border border-secondary rounded' md={4}>
               <div className='my-3'>
                 <SearchBox />
               </div>
