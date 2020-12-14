@@ -24,7 +24,8 @@ function handleInitialDataLoaded(state, payload) {
     userId,
     selectedId,
     chatsList,
-    chatsDetails
+    chatsDetails,
+    loading: false
   }
 }
 

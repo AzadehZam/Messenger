@@ -24,6 +24,7 @@ export const fetchInitData = () => {
    return (dispatch) => {
         getInitialData().then( res => 
             dispatch({type: 'INITIAL_DATA_LOADED', payload: res})
+            
         )
     }
 }

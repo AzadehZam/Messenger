@@ -11,15 +11,19 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import SearchBox from './components/SearchBox';
+import Spinner from './components/Spinner';
 
 function App() {
 
-  const [{ userId, selectedId, chatsList, chatsDetails }, dispatch] = useThunkReducer(reducer, {
+  const [{ userId, selectedId, chatsList, chatsDetails, loading }, dispatch] = useThunkReducer(reducer, {
     userId: '1',
     selectedId: null,
     chatsList: [],
-    chatsDetails: []
+    chatsDetails: [],
+    loading: true
   });
+
+  console.log(loading)
 
   useEffect(() => {
     dispatch(fetchInitData());
@@ -38,8 +42,9 @@ function App() {
     <DispatchContext.Provider value={dispatch}>
       <Container fluid className='vh-100 d-inline-block'>
         <Jumbotron className='h-100'>
-          <Row className=' h-100'>
-            <Col className='h-100 d-inline-block' md={4}>
+          {loading && <Spinner loading={loading}/>}
+          {!loading && <Row className=' h-100'>
+            <Col className='h-100 d-inline-block side-bar' md={4}>
               <div className='my-3'>
                 <SearchBox />
               </div>
@@ -51,7 +56,7 @@ function App() {
             <Col className='align-bottom' md={8}>
               {selectedId && <Chat  chatId={selectedId} userName={selectedChat.userName} selectedChatDatails={selectedChatDatails} userId={userId}/>}
             </Col>
-          </Row>
+          </Row>}
         </Jumbotron>
       </Container>
     </DispatchContext.Provider>
