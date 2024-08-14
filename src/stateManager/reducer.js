@@ -65,8 +65,6 @@ function handleSendMessage(state, payload){
       const newChatsDetails = handleChatDetail( newMessages, chatId, chatsDetails )
       let newChatsList = [...chatsList]
       newChatsList = handleSortChatsList(newChatsList, chatId)
-      console.log('newChatsList');
-      console.log(newChatsList);
       
       return {
         ...state,
